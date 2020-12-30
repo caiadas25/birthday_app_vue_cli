@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <div id="nav">
-      <router-link to="/">Test commit</router-link> |
+      <router-link to="/">Test commit 2</router-link> |
       <router-link to="/about">About</router-link>
     </div>
     <router-view />
