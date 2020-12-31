@@ -1,19 +1,20 @@
 <template>
-<div>
+<div v-if="this.friends.length">
+  <!--v-if above only lets the template render when the state has fetched the friends from firestore-->
   <h1>{{getHeadline()}}</h1>
   <!--Create a v-for for the "person" component to display more than one when applicable-->
   <person v-if="this.checkIfThereAreMoreBirthdaysThisYear()"
-          :birthMonth="this.getBirthMonthOfFirstFriend()"
-          :birthDay="this.getBirthDayOfFirstFriend()"
-          :name="this.getNameOfFirstFriend()"
-          :photo="this.getPhotoOfFirstFriend()"></person>
+      :birthMonth="this.getBirthMonthOfFirstFriend()"
+      :birthDay="this.getBirthDayOfFirstFriend()"
+      :name="this.getNameOfFirstFriend()"
+      :photo="this.getPhotoOfFirstFriend()"></person>
 </div>
 </template>
 
 <script>
 import person from '../components/person';
 import navbar from '../components/navbar';
-import { mapState, mapGetters, mapActions } from 'vuex'
+import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
 
 export default {
   components: {
@@ -22,19 +23,15 @@ export default {
   },
   data: function() {
     return {
-      persons: [
-        ['hello'],
-        ['goodbye']
-      ],
-      count: 2,
+
     }
-  },
-  created(){
-  },
-  props: {
   },
 
   name: 'homepage',
+
+   created(){
+    this.$store.dispatch('obtainData')
+  },
 
   computed: {
     ...mapGetters([
@@ -44,8 +41,11 @@ export default {
       'friends'
     ]),
     ...mapActions([
+      'obtainData'
+    ]),
+    ...mapMutations([
+      'setData'
     ])
-
   },
 
   methods: {
@@ -62,7 +62,6 @@ export default {
     },
 
     getPhotoOfFirstFriend() {
-      let friends = this.friends;
       return this.friends[0].photo;
     },
     getBirthMonthOfFirstFriend() {

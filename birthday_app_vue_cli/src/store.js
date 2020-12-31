@@ -9,26 +9,17 @@ import firebase from 'firebase';
 export default new Vuex.Store({
   state: {
     friends: [],
-    title: 'My Custom Title',
-    links: [
-      'google',
-      'youtube',
-      'expresso',
-    ]
   },
   getters: {
     getData: state => {
       return state.friends
     },
-    countLinks: state => {
-      return state.links.length
-    }
   },
 
   actions: {
     obtainData({commit}) {
       const db = firebase.firestore();
-      console.log('it werks!')
+      console.log('it works!')
       return new Promise((resolve, reject) => {
         let childDataArray = [];
         db.collection('people').get().then((snapshot) => {
