@@ -2,7 +2,7 @@
 <div>
   <h1>{{getHeadline()}}</h1>
   <!--Create a v-for for the "person" component to display more than one when applicable-->
-  <person v-if="this.firstFriendHasEmptyParsedDate()"
+  <person v-if="this.checkIfThereAreMoreBirthdaysThisYear()"
           :birthMonth="this.getBirthMonthOfFirstFriend()"
           :birthDay="this.getBirthDayOfFirstFriend()"
           :name="this.getNameOfFirstFriend()"
@@ -50,16 +50,15 @@ export default {
 
   methods: {
     getHeadline() {
-      return this.firstFriendHasEmptyParsedDate() ? 'Next birthday:' : 'No more birthdays this year :(';
+      return this.checkIfThereAreMoreBirthdaysThisYear() ? 'Next birthday:' : 'No more birthdays this year :(';
     },
 
     //meaning that there are no more birthdays this year.
-    async firstFriendHasEmptyParsedDate(){
-      //await this.$store.dispatch('obtainData');
-      //above line causes infinite loop
+    checkIfThereAreMoreBirthdaysThisYear(){
       let dateInMilisecondsOfNextFriend = this.friends[0].birthdaysInMiliseconds;
-      //86400000 is the number of ms in a day. Thus, if the value is larger than -86400000, it means the current day is a birthday day.
-      return (dateInMilisecondsOfNextFriend >= -86400000) ? true : false;
+      //if the first friend in the ordered list has no parsed birthday date and if the the miliseconds to the birthday of the same friend
+      // is a negative number larger than -86400000 (the number of ms in a day) that means there are no more birthdays in the current year 
+      return (this.friends[0].parsed.length === 0) && (dateInMilisecondsOfNextFriend <= -86400000) ? false : true;
     },
 
     getPhotoOfFirstFriend() {
