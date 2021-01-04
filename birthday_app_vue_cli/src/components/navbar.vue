@@ -13,6 +13,7 @@
       <div class="navbar-item">
         <router-link class="fill-div" to="/login">Login</router-link>
       </div>
+      <topHeader class="navbar-item"></topHeader>
       <div class="navbar-item">
         <router-link class="fill-div" to="/register">Register</router-link>
       </div>
@@ -20,10 +21,13 @@
   </div>
 </template>
 <script>
+import topHeader from '../components/topHeader';
 
 export default {
   name: 'navbar',
-
+  components: {
+    'topHeader': topHeader,
+  },
   computed: {
 
   },
@@ -48,7 +52,6 @@ export default {
   justify-content: flex-end;
 }
 .navbar-item {
-  display: flex;
   width: 10%;
   height: 100px;
   justify-content: center;

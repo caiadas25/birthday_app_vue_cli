@@ -18,8 +18,7 @@
 
 <script>
 import { mapState } from 'vuex'
-import * as firebase from 'firebase'
-import "firebase/auth"
+import firebase from 'firebase';
 
 export default {
   name: 'register',
@@ -42,7 +41,7 @@ export default {
     async registerUser() {
       try{
         firebase.auth().createUserWithEmailAndPassword(this.email, this.password);
-        console.log(firebase.auth().createUserWithEmailAndPassword(this.email, this.password));
+        alert('User added with and logged in with success!')
         this.$router.push('/')
       } catch(err){
         console.log(err);
