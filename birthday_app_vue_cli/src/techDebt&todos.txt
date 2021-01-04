@@ -1,19 +1,18 @@
+**DONE** add way to edit friend's information
+**DONE** add way to delete friends
+**DONE** add scss support
+**DONE** fix bug where the homepage does not display the next birthday if that birthday is in the current day (date is now tecnically in the past so the parsed property is empty)
+
 Resolve bug of 2 birthdays on the same day only showing one of them.
 Add validation to make all fields in the form mandatory.
 Add telegram notification on name of birthday.
 Add way to make account and add your own friends birthdays.
-
 Make the project online and include it in nunocaiadas.com
 Improve catalog view
 add go back to top button to catalog view
-**DONE** add way to edit friend's information
-**DONE** add way to delete friends
 improve edit mode styling
-
 clean up css
-
-add scss support
-
+create dynamic form component
 add authentication
+^ how to make each user have a collection of friends assigned to them
 
-fix bug where the homepage does not display the next birthday if that birthday is in the current day (date is now tecnically in the past so the parsed property is empty)

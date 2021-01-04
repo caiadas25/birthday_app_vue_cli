@@ -10,6 +10,12 @@
       <div class="navbar-item">
         <router-link class="fill-div" to="/addPerson">Add Person</router-link>
       </div>
+      <div class="navbar-item">
+        <router-link class="fill-div" to="/login">Login</router-link>
+      </div>
+      <div class="navbar-item">
+        <router-link class="fill-div" to="/register">Register</router-link>
+      </div>
     </div>
   </div>
 </template>
@@ -43,13 +49,12 @@ export default {
 }
 .navbar-item {
   display: flex;
-  width: 20%;
+  width: 10%;
   height: 100px;
   justify-content: center;
   align-items: center;
 }
-.navbar-item :hover {
-}
+
 .fill-div {
   display: flex;
   justify-content: center;
