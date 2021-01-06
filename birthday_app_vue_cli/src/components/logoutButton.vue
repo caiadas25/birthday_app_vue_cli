@@ -13,7 +13,7 @@ import firebase from 'firebase';
 
 
 export default {
-  name: 'topHeader',
+  name: 'logoutButton',
   data: function() {
     return {
         loggedIn: false

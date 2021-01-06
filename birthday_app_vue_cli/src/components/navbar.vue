@@ -13,7 +13,7 @@
       <div class="navbar-item">
         <router-link class="fill-div" to="/login">Login</router-link>
       </div>
-      <topHeader class="navbar-item"></topHeader>
+      <logoutButton class="navbar-item"></logoutButton>
       <div class="navbar-item">
         <router-link class="fill-div" to="/register">Register</router-link>
       </div>
@@ -21,12 +21,12 @@
   </div>
 </template>
 <script>
-import topHeader from '../components/topHeader';
+import logoutButton from '../components/logoutButton';
 
 export default {
   name: 'navbar',
   components: {
-    'topHeader': topHeader,
+    'logoutButton': logoutButton,
   },
   computed: {
 
