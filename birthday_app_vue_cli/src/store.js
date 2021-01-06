@@ -9,11 +9,36 @@ import firebase from 'firebase';
 export default new Vuex.Store({
   state: {
     friends: [],
+    navItems: [
+      {
+        path: "/",
+        title: "Homepage"
+      },
+      {
+        path: "/catalog",
+        title: "Catalog"
+      },
+      {
+        path: "/addPerson",
+        title: "Add Person"
+      },
+      {
+        path: "/login",
+        title: "Login"
+      },
+      {
+        path: "/register",
+        title: "Register"
+      }
+    ]
   },
   getters: {
     getData: state => {
       return state.friends
     },
+    getNavItems: state => {
+      return state.navItems
+    }
   },
 
   actions: {

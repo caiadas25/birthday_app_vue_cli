@@ -1,45 +1,51 @@
 <template>
   <div class="navbar-wrapper">
-    <div class="navbar-item navbar-logo">
-      <router-link class="fill-div" to="/">Homepage</router-link>
-    </div>
     <div class="navbar-item-wrapper">
-      <div class="navbar-item">
-        <router-link class="fill-div" to="/catalog">Catalog</router-link>
-      </div>
-      <div class="navbar-item">
-        <router-link class="fill-div" to="/addPerson">Add Person</router-link>
-      </div>
-      <div class="navbar-item">
-        <router-link class="fill-div" to="/login">Login</router-link>
-      </div>
       <logoutButton class="navbar-item"></logoutButton>
-      <div class="navbar-item">
-        <router-link class="fill-div" to="/register">Register</router-link>
-      </div>
+    </div>
+    <div v-for="(item, index) in navItems"
+         :key="index"
+         class="navbar-item">
+      <router-link :class="$route.path === item.path ? 'highlighted' : ''" 
+                    class="fill-div" 
+                    :to="item.path">
+        {{item.title}}
+      </router-link>
     </div>
   </div>
 </template>
 <script>
 import logoutButton from '../components/logoutButton';
+import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
 
 export default {
   name: 'navbar',
+  data: function() {
+    return {
+    }
+  },
   components: {
     'logoutButton': logoutButton,
   },
   computed: {
-
+    ...mapState([
+      'navItems'
+    ]),
   },
 
   methods: {
-
   },
 
 }
 </script>
 
 <style scoped>
+
+.highlighted{
+  background: #f5f5f5;
+  font-weight: bolder;
+}
+
 .navbar-wrapper{
   width: 100%;
   height: fit-content;
