@@ -3,7 +3,10 @@
 **DONE** add scss support
 **DONE** fix bug where the homepage does not display the next birthday if that birthday is in the current day (date is now tecnically in the past so the parsed property is empty)
 **DONE** add authentication
+**DONE** create dynamic navbar with store and v-for
+**DONE** Clean up vuex store (maybe create individual files for getters, actions, etc)
 
+put addPerson to view instead of component
 Resolve bug of 2 birthdays on the same day only showing one of them.
 Add validation to make all fields in the form mandatory.
 Add telegram notification on date of birthday.
