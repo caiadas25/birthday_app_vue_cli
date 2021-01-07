@@ -49,7 +49,6 @@
 
 <script>
 import person from '../components/person';
-import addPerson from '../components/addPerson';
 import { mapState } from 'vuex'
 import db from '../firebase/firebaseInit.js';
 
@@ -70,7 +69,6 @@ export default {
   },
   components: {
     'person': person,
-    'addPerson': addPerson,
   },
   computed: {
     ...mapState([

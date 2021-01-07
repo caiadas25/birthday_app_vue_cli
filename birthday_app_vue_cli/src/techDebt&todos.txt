@@ -6,6 +6,7 @@
 **DONE** create dynamic navbar with store and v-for
 **DONE** Clean up vuex store (maybe create individual files for getters, actions, etc)
 
+create footer
 put addPerson to view instead of component
 Resolve bug of 2 birthdays on the same day only showing one of them.
 Add validation to make all fields in the form mandatory.
@@ -15,6 +16,7 @@ Make the project online and include it in nunocaiadas.com
 Improve catalog view
 add go back to top button to catalog view
 improve edit mode styling
+improve Add Person component styles
 clean up css
 create dynamic form component
 ^ how to make each user have a collection of friends assigned to them
