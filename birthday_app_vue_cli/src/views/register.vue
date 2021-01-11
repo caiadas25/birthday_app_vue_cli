@@ -39,14 +39,17 @@ export default {
   },
   methods: {
     async registerUser() {
-      try{
-        firebase.auth().createUserWithEmailAndPassword(this.email, this.password);
-        alert('User added with and logged in with success!')
-        this.$router.push('/')
-      } catch(err){
-        console.log(err);
-      }
-    }
+        firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+        .then(
+          user => {
+            alert('User added with and logged in with success!')
+            this.$router.push('/')
+          },
+          err => {
+            alert(err.message)
+        }
+      )
+    },
   }
 }
 </script>

@@ -5,9 +5,11 @@
 **DONE** add authentication
 **DONE** create dynamic navbar with store and v-for
 **DONE** Clean up vuex store (maybe create individual files for getters, actions, etc)
+**DONE** put addPerson to view instead of component
+**DONE** catch authentication errors
 
 create footer
-put addPerson to view instead of component
+improve authentication
 Resolve bug of 2 birthdays on the same day only showing one of them.
 Add validation to make all fields in the form mandatory.
 Add telegram notification on date of birthday.

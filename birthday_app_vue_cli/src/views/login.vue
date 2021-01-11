@@ -9,7 +9,10 @@
     </div>
     <button type="submit">Login</button>
   </form>
-  <div class="error" v-if="error">{{error.message}}</div>
+  <div id="error" :class="error ? '' : 'hidden'" v-if="error">
+    {{error}}
+    <button @click="hideError()">X</button>
+  </div>
   <span>Need an account? Click here to <router-link to="/register">register</router-link></span>
 </div>
 </template>
@@ -36,19 +39,27 @@ export default {
     ])
   },
   methods: {
-    loginUser() {
-      try {
-        const val = firebase.auth().signInWithEmailAndPassword(this.email, this.password);
-        alert('user logged In')
-        this.$router.push('/')
-      } catch (err) {
-        console.log(err)
-      }
+    loginUser: function(e) {
+        firebase.auth().signInWithEmailAndPassword(this.email, this.password)
+        .then(
+          user => {
+            alert(`You are logged in as ${user.email}`);
+            this.$router.push('/')
+          },
+          err => {
+            this.error = 'Invalid Username or Password';
+          }
+        )
+    },
+    hideError() {
+      this.error = '';
     }
   }
 }
 </script>
 
 <style lang="scss" scoped>
-
+.hidden {
+  display: none;
+}
 </style>

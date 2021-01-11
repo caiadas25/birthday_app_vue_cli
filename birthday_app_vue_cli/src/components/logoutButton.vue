@@ -22,6 +22,7 @@ export default {
 
   mounted() {
       firebase.auth().onAuthStateChanged(user => {
+        console.log(user);
           if(user) {
               this.loggedIn = true;
           } else {
