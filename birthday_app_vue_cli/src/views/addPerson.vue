@@ -31,6 +31,7 @@
           <button type="submit" class="submit-btn">Submeter</button>
           <router-link to="/" class="cancel-btn">Cancelar</router-link>
         </div>
+        <pre>{{newPerson.userId}}</pre>
       </form>
     </div>
   </div>
@@ -40,9 +41,22 @@
 
 import db from '../firebase/firebaseInit.js';
 import { mapState } from 'vuex'
+import firebase from 'firebase';
 
 export default {
   name: 'addPerson',
+
+  mounted() {
+      firebase.auth().onAuthStateChanged(user => {
+          if(user) {
+              this.loggedIn = true;
+              this.newPerson.userId = user.email;
+              console.log(this.newPerson.userId)
+          } else {
+              this.loggedIn = false;
+          }
+      })
+  },
   methods: {
     generateDays(numberOfDays){
       return [...Array(numberOfDays + 1 ).keys()]
@@ -58,6 +72,7 @@ export default {
         birthDay: this.newPerson.birthDay,
         birthMonth: this.newPerson.birthMonth,
         photo: this.newPerson.photo,
+        user: this.newPerson.userId
       }
       await db.collection("people").add(friendProperties)
       .then(this.$store.dispatch('obtainData'))
@@ -73,6 +88,7 @@ export default {
           birthDay: '',
           birthMonth: '',
           photo: '',
+          userId: ''
       }
     }
   },

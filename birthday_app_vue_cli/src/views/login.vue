@@ -9,9 +9,9 @@
     </div>
     <button type="submit">Login</button>
   </form>
-  <div id="error" :class="error ? '' : 'hidden'" v-if="error">
+  <div id="error">
     {{error}}
-    <button @click="hideError()">X</button>
+    <button v-if="error" @click="hideError()">X</button>
   </div>
   <span>Need an account? Click here to <router-link to="/register">register</router-link></span>
 </div>
@@ -45,6 +45,7 @@ export default {
           user => {
             alert(`You are logged in as ${user.email}`);
             this.$router.push('/')
+
           },
           err => {
             this.error = 'Invalid Username or Password';
@@ -59,7 +60,5 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.hidden {
-  display: none;
-}
+
 </style>

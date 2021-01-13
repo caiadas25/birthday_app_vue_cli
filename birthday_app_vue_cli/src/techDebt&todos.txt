@@ -23,3 +23,21 @@ clean up css
 create dynamic form component
 ^ how to make each user have a collection of friends assigned to them
 
+
+
+
+'Collection' of users
+|
+|
+Each user is a 'document'
+|
+|
+each document has a 'friends' collection
+|
+|
+each 'friends' collection has the structure: birthday, birthMonth, name, photo.
+
+
+
+add userId to each new friend 
+userId is the userId of the logged in user

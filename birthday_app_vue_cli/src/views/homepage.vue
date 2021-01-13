@@ -8,6 +8,8 @@
       :birthDay="this.getBirthDayOfFirstFriend()"
       :name="this.getNameOfFirstFriend()"
       :photo="this.getPhotoOfFirstFriend()"></person>
+      <pre>{{this.userSpecificFriends}}</pre>
+      <pre>{{this.friends}}</pre>
 </div>
 </template>
 
@@ -31,6 +33,7 @@ export default {
 
    created(){
     this.$store.dispatch('obtainData')
+    this.$store.dispatch('getFriends')
   },
 
   computed: {
@@ -38,13 +41,15 @@ export default {
       'getData'
     ]),
     ...mapState([
-      'friends'
+      'friends',
+      'userSpecificFriends'
     ]),
     ...mapActions([
       'obtainData'
     ]),
     ...mapMutations([
-      'setData'
+      'setData',
+      'setUserSpecificFriends'
     ])
   },
 

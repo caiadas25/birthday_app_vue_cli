@@ -44,6 +44,7 @@ export default {
           user => {
             alert('User added with and logged in with success!')
             this.$router.push('/')
+            .then(this.$store.dispatch('createUser'))
           },
           err => {
             alert(err.message)
