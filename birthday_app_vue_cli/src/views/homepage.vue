@@ -16,7 +16,12 @@
 <script>
 import person from '../components/person';
 import navbar from '../components/navbar';
-import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
+import { 
+  mapState, 
+  mapGetters, 
+  mapActions, 
+  mapMutations 
+  } from 'vuex'
 
 export default {
   components: {
@@ -32,24 +37,27 @@ export default {
   name: 'homepage',
 
    created(){
-    this.$store.dispatch('obtainData')
-    this.$store.dispatch('getFriends')
+
   },
 
   computed: {
     ...mapGetters([
-      'getData'
+      //'getData',
+      //'getUserSpecificFriends'
     ]),
     ...mapState([
       'friends',
       'userSpecificFriends'
     ]),
     ...mapActions([
-      'obtainData'
+      //not needed
+      //'getWholeDataAction'
     ]),
     ...mapMutations([
-      'setData',
-      'setUserSpecificFriends'
+      //not needed
+      //'setData',
+      
+      //'setUserSpecificFriends'
     ])
   },
 

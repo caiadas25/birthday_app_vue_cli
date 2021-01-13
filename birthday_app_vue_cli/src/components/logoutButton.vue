@@ -22,7 +22,7 @@ export default {
 
   mounted() {
       firebase.auth().onAuthStateChanged(user => {
-        console.log(user);
+        //console.log(user);
           if(user) {
               this.loggedIn = true;
           } else {
@@ -46,7 +46,7 @@ export default {
             alert('logged out');
             this.$router.push('/')
           } catch (err) {
-              console.log(err)
+              //console.log(err)
           }
       }
   }

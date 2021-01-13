@@ -1,6 +1,7 @@
 <template>
 <div>
   <ul class="catalog-container">
+    <pre>{{userSpecificFriends}}</pre>
     <li v-for="friend in friends" v-bind:key="friend['.key']" class="person-container-catalog">
         <div v-if="friendIdentifier === friend.name">
         <form class="edit-form">
@@ -72,7 +73,8 @@ export default {
   },
   computed: {
     ...mapState([
-      'friends'
+      'friends',
+      'userSpecificFriends'
     ])
   },
   methods: {
@@ -90,7 +92,7 @@ export default {
         querySnapshot.forEach(doc => {
           doc.ref.delete()
           //fetches the list of friends again to display the updated list
-          .then(this.$store.dispatch('obtainData'))
+          .then(this.$store.dispatch('getWholeDataAction'))
           .then(alert('Friend successfully removed!'))
         })
       })
@@ -121,7 +123,7 @@ export default {
           })
           //fetches the list of friends again to display the updated list
           .then(alert('Friend successfully edited!'))
-          .then(this.$store.dispatch('obtainData'))
+          .then(this.$store.dispatch('getWholeDataAction'))
         })
       })
     }

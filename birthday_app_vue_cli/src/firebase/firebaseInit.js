@@ -18,9 +18,45 @@ function obtainData() {
   });
 }
 
+function getUserSpecificData() {
+  return new Promise((resolve, reject) => {
+    firebase.auth().onAuthStateChanged(user => {
+      if (user) {
+        let userSpecificData = [];
+        firebase.firestore().collection('people').where("user", "==", `${user.email}`).get().then((snapshot) => {
+          snapshot.forEach(docSnap => {
+            userSpecificData.push(docSnap.data())
+          })
+          resolve(userSpecificData);
+        })
+      }
+    })
+  })
+  // firebase.auth().onAuthStateChanged(user => {
+  //     if(user) {
+  //       //console.log('email is ' + user.email)
+  //       //console.log(`I am going to get friends for user ${user.email}`);
+  //       let userSpecificFriends = [];
+  //       firebase.firestore().collection('people').where("user", "==", `${user.email}`).get().then((snapshot) => {
+  //         snapshot.forEach(docSnap => {
+  //           userSpecificFriends.push(docSnap.data())
+  //           console.log(userSpecificFriends);
+  //         })
+  //         return;
+  //       })
+  //     }
+  // })
+}
+
 function errData(err){
   console.log(err);
 }
 
-export {database, friendsRef, obtainData, errData};
+export {
+  database, 
+  friendsRef, 
+  obtainData, 
+  errData, 
+  getUserSpecificData
+};
 export default firebaseApp.firestore();

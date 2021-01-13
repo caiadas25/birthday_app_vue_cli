@@ -15,7 +15,8 @@ export default {
   'navbar': navbar,
 },
   created(){
-    this.$store.dispatch('obtainData')
+    this.$store.dispatch('getWholeDataAction')
+    this.$store.dispatch('getUserSpecificDataAction')
   },
 }
 </script>

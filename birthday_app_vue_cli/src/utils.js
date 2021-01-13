@@ -52,7 +52,7 @@ function buildObject(firebaseData){
     }
   }
   let sortedObjects = firebaseData.sort((a, b) => (a.converted > b.converted) ? 1 : -1)
-  console.log(firebaseData)
+  //console.log(firebaseData)
 
   return firebaseData;
 }

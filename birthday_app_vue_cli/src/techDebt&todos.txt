@@ -16,10 +16,12 @@ Add telegram notification on date of birthday.
 Add way to make account and add your own friends birthdays.
 Make the project online and include it in nunocaiadas.com
 Improve catalog view
+add logged in status to state
 add go back to top button to catalog view
 improve edit mode styling
 improve Add Person component styles
 clean up css
+only show userSpecificFriends in catalog view if logged in
 create dynamic form component
 ^ how to make each user have a collection of friends assigned to them
 

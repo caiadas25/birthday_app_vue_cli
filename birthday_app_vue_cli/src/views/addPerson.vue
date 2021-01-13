@@ -51,7 +51,7 @@ export default {
           if(user) {
               this.loggedIn = true;
               this.newPerson.userId = user.email;
-              console.log(this.newPerson.userId)
+              //console.log(this.newPerson.userId)
           } else {
               this.loggedIn = false;
           }
@@ -75,7 +75,7 @@ export default {
         user: this.newPerson.userId
       }
       await db.collection("people").add(friendProperties)
-      .then(this.$store.dispatch('obtainData'))
+      .then(this.$store.dispatch('getWholeDataAction'))
       .then(this.$router.push('/'))
     },
   },
