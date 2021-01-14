@@ -8,7 +8,9 @@
 **DONE** put addPerson to view instead of component
 **DONE** catch authentication errors
 **DONE** add logged in status to state
+**DONE** only show userSpecificFriends in catalog view if logged in
 
+add spinner during loading times
 create footer
 improve authentication
 Resolve bug of 2 birthdays on the same day only showing one of them.
@@ -21,7 +23,6 @@ add go back to top button to catalog view
 improve edit mode styling
 improve Add Person component styles
 clean up css
-only show userSpecificFriends in catalog view if logged in
 create dynamic form component
 ^ how to make each user have a collection of friends assigned to them
 

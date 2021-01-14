@@ -1,9 +1,10 @@
 <template>
 <div>
   <ul class="catalog-container">
-    <pre>{{userSpecificFriends}}</pre>
-    <li v-for="friend in friends" v-bind:key="friend['.key']" class="person-container-catalog">
-        <div v-if="friendIdentifier === friend.name">
+    <li v-for="userSpecificFriend in userSpecificFriends" 
+        v-bind:key="userSpecificFriend['.key']" 
+        class="person-container-catalog">
+        <div v-if="friendIdentifier === userSpecificFriend.name">
         <form class="edit-form">
           <div class="form-item">
             <input type="text" class="form-item-name" v-model="editedFriend.name">
@@ -30,18 +31,18 @@
             <input type="text" class="form-item-url" v-model="editedFriend.photo">
           </div>
         </form>
-          <button @click="onEditSubmit()">confirm</button>
-          <button @click="onCancel(friend.name)">cancel</button>
+          <div class="button" @click="onEditSubmit()">confirm</div>
+          <div class="button" @click="onCancel(userSpecificFriend.name)">cancel</div>
         </div>
         <person v-else
-          :birthMonth="friend.birthMonth"
-          :birthDay="friend.birthDay"
-          :name="friend.name"
-          :photo="friend.photo"></person>
-          <div v-if="!(friendIdentifier === friend.name)">
-            <button @click="onEdit(friend)">Edit</button>
-            <button @click="onRemove(friend.name)">Remove</button>
-          </div>
+          :birthMonth="userSpecificFriend.birthMonth"
+          :birthDay="userSpecificFriend.birthDay"
+          :name="userSpecificFriend.name"
+          :photo="userSpecificFriend.photo"></person>
+        <div v-if="!(friendIdentifier === userSpecificFriend.name)">
+          <div class="button" @click="onEdit(userSpecificFriend)">Edit</div>
+          <div class="button" @click="onRemove(userSpecificFriend.name)">Delete</div>
+        </div>
     </li>
   </ul>
   <router-link to="/" >Back</router-link>
@@ -104,6 +105,7 @@ export default {
       this.editedFriend.photo = friend.photo
       this.editedFriend.birthDay = friend.birthDay
       this.editedFriend.birthMonth = friend.birthMonth
+      this.editedFriend.user = friend.user
     },
     onCancel() {
       this.friendIdentifier = '';
@@ -120,10 +122,11 @@ export default {
             photo: this.editedFriend.photo,
             birthDay: this.editedFriend.birthDay,
             birthMonth: this.editedFriend.birthMonth,
+            user: this.editedFriend.user,
           })
           //fetches the list of friends again to display the updated list
           .then(alert('Friend successfully edited!'))
-          .then(this.$store.dispatch('getWholeDataAction'))
+          .then(this.$store.dispatch('getUserSpecificDataAction'))
         })
       })
     }
@@ -132,6 +135,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+ @import './styles/mixins.scss';
+
 .person-container-catalog .person-container {
   box-shadow: none;
 }
@@ -180,4 +185,15 @@ export default {
   border-radius: 10px;
   box-shadow: 5px 5px 15px rgba(186,126,126, .5);
 }
+
+
+
+
+.button{
+  @include button;
+}
+.button:active{
+  top:0.1em;
+}
+
 </style>

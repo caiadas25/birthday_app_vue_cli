@@ -28,7 +28,7 @@
           </select>
         </div>
         <div class="action-buttons">
-          <button type="submit" class="submit-btn">Submeter</button>
+          <button type="submit" class="button">Submeter</button>
           <router-link to="/" class="cancel-btn">Cancelar</router-link>
         </div>
         <pre>{{newPerson.userId}}</pre>
@@ -96,7 +96,10 @@ export default {
 }
 
 </script>
-<style scoped>
+<style lang="scss" scoped>
+ @import './styles/mixins.scss';
+
+
 h3 {
   font-size: 28px;
 }
@@ -124,12 +127,8 @@ select, input {
   height: 30px;
   width: 70%;
 }
-button {
-  height: 36px;
-  background: teal;
-  color: white;
-  font-size: 16px;
-  padding: 5px;
+.button {
+  @include button;
 }
 .action-buttons {
   display: flex;

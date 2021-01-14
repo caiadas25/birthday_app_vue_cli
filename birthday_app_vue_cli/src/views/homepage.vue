@@ -1,16 +1,20 @@
 <template>
-<div v-if="this.friends.length">
-  <!--v-if above only lets the template render when the state has fetched the friends from firestore-->
-  <h1>{{getHeadline()}}</h1>
-  <pre>{{this.loggedInStatus}}</pre>
-  <!--Create a v-for for the "person" component to display more than one when applicable-->
-  <person v-if="this.checkIfThereAreMoreBirthdaysThisYear()"
-      :birthMonth="this.getBirthMonthOfFirstFriend()"
-      :birthDay="this.getBirthDayOfFirstFriend()"
-      :name="this.getNameOfFirstFriend()"
-      :photo="this.getPhotoOfFirstFriend()"></person>
-      <pre>{{this.userSpecificFriends}}</pre>
+<div>
+  <div v-if="!this.loggedInStatus">
+    Please Login to add friends to your list!
+  </div>
+  <div v-if="this.userSpecificFriends.length">
+    <!--v-if above only lets the template render when the state has fetched the friends from firestore-->
+    <h1>{{getHeadline()}}</h1>
+    <!--Create a v-for for the "person" component to display more than one when applicable-->
+    <person v-if="this.checkIfThereAreMoreBirthdaysThisYear()"
+        :birthMonth="this.getBirthMonthOfFirstFriend()"
+        :birthDay="this.getBirthDayOfFirstFriend()"
+        :name="this.getNameOfFirstFriend()"
+        :photo="this.getPhotoOfFirstFriend()"></person>
+  </div>
 </div>
+
 </template>
 
 <script>
@@ -40,8 +44,6 @@ export default {
 
   computed: {
     ...mapGetters([
-      //'getData',
-      //'getUserSpecificFriends'
     ]),
     ...mapState([
       'friends',
@@ -49,14 +51,8 @@ export default {
       'loggedInStatus'
     ]),
     ...mapActions([
-      //not needed
-      //'getWholeDataAction'
     ]),
     ...mapMutations([
-      //not needed
-      //'setData',
-      
-      //'setUserSpecificFriends'
     ])
   },
 
@@ -67,36 +63,36 @@ export default {
 
     //meaning that there are no more birthdays this year.
     checkIfThereAreMoreBirthdaysThisYear(){
-      let dateInMilisecondsOfNextFriend = this.friends[0].birthdaysInMiliseconds;
+      let dateInMilisecondsOfNextFriend = this.userSpecificFriends[0].birthdaysInMiliseconds;
       //if the first friend in the ordered list has no parsed birthday date and if the the miliseconds to the birthday of the same friend
       // is a negative number larger than -86400000 (the number of ms in a day) that means there are no more birthdays in the current year 
-      return (this.friends[0].parsed.length === 0) && (dateInMilisecondsOfNextFriend <= -86400000) ? false : true;
+      return (this.userSpecificFriends[0].parsed.length === 0) && (dateInMilisecondsOfNextFriend <= -86400000) ? false : true;
     },
 
     getPhotoOfFirstFriend() {
-      return this.friends[0].photo;
+      return this.userSpecificFriends[0].photo;
     },
     getBirthMonthOfFirstFriend() {
-      let friends = this.friends;
-      for (let i = 0; i < friends.length; i++) {
-        if (friends[i].birthMonth) {
-            return friends[i].birthMonth;
+      let userSpecificFriends = this.userSpecificFriends;
+      for (let i = 0; i < userSpecificFriends.length; i++) {
+        if (userSpecificFriends[i].birthMonth) {
+            return userSpecificFriends[i].birthMonth;
         }
       }
     },
     getNameOfFirstFriend() {
-      let friends = this.friends;
-      for (let i = 0; i < friends.length; i++) {
-        if (friends[i].name) {
-            return friends[i].name;
+      let userSpecificFriends = this.userSpecificFriends;
+      for (let i = 0; i < userSpecificFriends.length; i++) {
+        if (userSpecificFriends[i].name) {
+            return userSpecificFriends[i].name;
         }
       }
     },
     getBirthDayOfFirstFriend() {
-      let friends = this.friends;
-      for (let i = 0; i < friends.length; i++) {
-        if (friends[i].birthDay) {
-            return friends[i].birthDay;
+      let userSpecificFriends = this.userSpecificFriends;
+      for (let i = 0; i < userSpecificFriends.length; i++) {
+        if (userSpecificFriends[i].birthDay) {
+            return userSpecificFriends[i].birthDay;
         }
       }
     }

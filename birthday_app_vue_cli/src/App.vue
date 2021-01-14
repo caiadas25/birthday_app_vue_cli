@@ -75,4 +75,14 @@ table {
 	border-collapse: collapse;
 	border-spacing: 0;
 }
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.15;
+  margin: 0;
+}
 </style>
