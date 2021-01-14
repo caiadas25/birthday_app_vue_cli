@@ -32,20 +32,6 @@ function getUserSpecificData() {
       }
     })
   })
-  // firebase.auth().onAuthStateChanged(user => {
-  //     if(user) {
-  //       //console.log('email is ' + user.email)
-  //       //console.log(`I am going to get friends for user ${user.email}`);
-  //       let userSpecificFriends = [];
-  //       firebase.firestore().collection('people').where("user", "==", `${user.email}`).get().then((snapshot) => {
-  //         snapshot.forEach(docSnap => {
-  //           userSpecificFriends.push(docSnap.data())
-  //           console.log(userSpecificFriends);
-  //         })
-  //         return;
-  //       })
-  //     }
-  // })
 }
 
 function errData(err){

@@ -17,6 +17,7 @@ export default {
   created(){
     this.$store.dispatch('getWholeDataAction')
     this.$store.dispatch('getUserSpecificDataAction')
+    this.$store.dispatch('getLoggedInStatus')
   },
 }
 </script>

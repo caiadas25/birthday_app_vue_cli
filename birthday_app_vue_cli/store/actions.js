@@ -1,4 +1,5 @@
 import firebase from 'firebase';
+// asyncronous way to update the state in the store
 
 export const actions = {
     getWholeDataAction({commit}) {
@@ -15,7 +16,6 @@ export const actions = {
         });
       },
     getUserSpecificDataAction({commit}) {
-      console.log('getUserSpecificDataAction works!')
       return new Promise((resolve, reject) => {
         firebase.auth().onAuthStateChanged(user => {
           if (user) {
@@ -31,6 +31,19 @@ export const actions = {
         })
       })
     },
+
+    //when this action is called, it commits the 'setLoggedInStatus' mutation, which puts the 'data' into the state. 
+    //The 'data' being the loggedIn variable in this case.
+    getLoggedInStatus({commit}) {
+      firebase.auth().onAuthStateChanged(user => {
+        let loggedIn = false
+        if(user) {
+          loggedIn = true
+          commit('setLoggedInStatus', loggedIn)
+        }
+      })
+    },
+
     createUser() {
       alert('user created')
       const currentUser = firebase.auth().currentUser;

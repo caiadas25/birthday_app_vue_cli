@@ -1,6 +1,7 @@
 export const state = {
     friends: [],
     userSpecificFriends: [],
+    loggedInStatus: false,
     navItems: [
       {
         path: "/",

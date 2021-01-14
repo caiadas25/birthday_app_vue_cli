@@ -7,5 +7,8 @@ export const getters = {
     },
     getNavItems: state => {
         return state.navItems
+    },
+    getLoggedInStatus: state => {
+        return state.loggedInStatus
     }
   };

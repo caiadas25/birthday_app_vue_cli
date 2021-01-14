@@ -76,6 +76,7 @@ export default {
       }
       await db.collection("people").add(friendProperties)
       .then(this.$store.dispatch('getWholeDataAction'))
+      .then(this.$store.dispatch('getUserSpecificDataAction'))
       .then(this.$router.push('/'))
     },
   },

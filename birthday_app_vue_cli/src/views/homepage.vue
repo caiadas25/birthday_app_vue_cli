@@ -2,6 +2,7 @@
 <div v-if="this.friends.length">
   <!--v-if above only lets the template render when the state has fetched the friends from firestore-->
   <h1>{{getHeadline()}}</h1>
+  <pre>{{this.loggedInStatus}}</pre>
   <!--Create a v-for for the "person" component to display more than one when applicable-->
   <person v-if="this.checkIfThereAreMoreBirthdaysThisYear()"
       :birthMonth="this.getBirthMonthOfFirstFriend()"
@@ -9,7 +10,6 @@
       :name="this.getNameOfFirstFriend()"
       :photo="this.getPhotoOfFirstFriend()"></person>
       <pre>{{this.userSpecificFriends}}</pre>
-      <pre>{{this.friends}}</pre>
 </div>
 </template>
 
@@ -30,14 +30,12 @@ export default {
   },
   data: function() {
     return {
-
     }
   },
 
   name: 'homepage',
 
-   created(){
-
+  mounted(){
   },
 
   computed: {
@@ -47,7 +45,8 @@ export default {
     ]),
     ...mapState([
       'friends',
-      'userSpecificFriends'
+      'userSpecificFriends',
+      'loggedInStatus'
     ]),
     ...mapActions([
       //not needed

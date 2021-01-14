@@ -7,6 +7,7 @@
 **DONE** Clean up vuex store (maybe create individual files for getters, actions, etc)
 **DONE** put addPerson to view instead of component
 **DONE** catch authentication errors
+**DONE** add logged in status to state
 
 create footer
 improve authentication
@@ -16,7 +17,6 @@ Add telegram notification on date of birthday.
 Add way to make account and add your own friends birthdays.
 Make the project online and include it in nunocaiadas.com
 Improve catalog view
-add logged in status to state
 add go back to top button to catalog view
 improve edit mode styling
 improve Add Person component styles
