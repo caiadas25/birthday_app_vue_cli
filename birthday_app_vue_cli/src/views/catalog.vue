@@ -31,8 +31,8 @@
             <input type="text" class="form-item-url" v-model="editedFriend.photo">
           </div>
         </form>
-          <div class="button" @click="onEditSubmit()">confirm</div>
-          <div class="button" @click="onCancel(userSpecificFriend.name)">cancel</div>
+          <div class="button-primary" @click="onEditSubmit()">Confirm</div>
+          <div class="button-secondary" @click="onCancel(userSpecificFriend.name)">Cancel</div>
         </div>
         <person v-else
           :birthMonth="userSpecificFriend.birthMonth"
@@ -40,8 +40,8 @@
           :name="userSpecificFriend.name"
           :photo="userSpecificFriend.photo"></person>
         <div v-if="!(friendIdentifier === userSpecificFriend.name)">
-          <div class="button" @click="onEdit(userSpecificFriend)">Edit</div>
-          <div class="button" @click="onRemove(userSpecificFriend.name)">Delete</div>
+          <div class="button-primary" @click="onEdit(userSpecificFriend)">Edit</div>
+          <div class="button-secondary" @click="onRemove(userSpecificFriend.name)">Delete</div>
         </div>
     </li>
   </ul>
@@ -136,6 +136,7 @@ export default {
 
 <style lang="scss" scoped>
  @import './styles/mixins.scss';
+ @import './styles/colors.scss';
 
 .person-container-catalog .person-container {
   box-shadow: none;
@@ -174,14 +175,15 @@ export default {
   text-align: left;
 }
 .catalog-container {
-  width: 50%;
-  margin: 0 auto;
+  align-items: center;
+  display: flex;
+  flex-direction: column;
 }
 .person-container-catalog{
   width: 700px;
   padding: 5px;
   margin: 20px;
-  background: #f5f5f5;
+  background: $card-primary;
   border-radius: 10px;
   box-shadow: 5px 5px 15px rgba(186,126,126, .5);
 }
@@ -189,8 +191,13 @@ export default {
 
 
 
-.button{
+.button-primary{
   @include button;
+  background: $button-primary;
+}
+.button-secondary {
+  @include button;
+  background: $button-secondary;
 }
 .button:active{
   top:0.1em;

@@ -98,6 +98,7 @@ export default {
 </script>
 <style lang="scss" scoped>
  @import './styles/mixins.scss';
+ @import './styles/colors.scss';
 
 
 h3 {
@@ -129,6 +130,7 @@ select, input {
 }
 .button {
   @include button;
+  background: $button-primary;
 }
 .action-buttons {
   display: flex;

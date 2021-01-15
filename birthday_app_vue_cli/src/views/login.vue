@@ -16,9 +16,7 @@
           <button v-if="error" @click="hideError()">X</button>
         </div>
       </form>
-
     </div>
-
     <div class="register-card">
       <span>Need an account? Click here to <router-link to="/register">register</router-link></span>
     </div>
@@ -70,6 +68,7 @@ export default {
 
 <style lang="scss" scoped>
  @import './styles/mixins.scss';
+ @import './styles/colors.scss';
 
 .login-card-wrapper {
   width: 50%;
@@ -124,6 +123,7 @@ export default {
 
 .button{
   @include button;
+  background: $button-primary;
   margin-left: 20px;
   width: 30%;
 }
