@@ -1,23 +1,23 @@
 <template>
   <div>
     <span class="headline">Nova pessoa</span>
-      <FormulateForm class="form-addPerson" @submit="addPerson()">
-          <FormulateInput validation="required" type="text" v-model="newPerson.name" label="Name" placeholder="Name"/>
-          <FormulateInput type="text" v-model="newPerson.photo" label="URL" placeholder="URL" />
+      <FormulateForm class="form-addPerson" v-model="formValues.newPerson" @submit="addPerson()">
+          <FormulateInput type="text" name="name" label="Name" placeholder="Name" validation="required"/>
+          <FormulateInput type="text"name="photo" label="URL" placeholder="URL" />
           <FormulateInput 
             type="select" 
             :options="this.formValues.birthDays" 
             label="Dia"
-            validation="required" 
-            v-model="newPerson.birthDay"
-            placeholder="Dia"/>
+            name="birthDay"
+            placeholder="Dia"
+            validation="required"/>
           <FormulateInput type="select" 
             :options="this.formValues.birthMonths" 
             label="Mês"
-            validation="required" 
+            name="birthMonth"
             label-class="my-label-class"
-            v-model="newPerson.birthMonth"
-            placeholder="Mês"/>
+            placeholder="Mês"
+            validation="required" />
             <FormulateInput class="button" type="submit"/>
             <router-link to="/" class="cancel-btn">Back</router-link>
       </FormulateForm>
@@ -37,8 +37,7 @@ export default {
       firebase.auth().onAuthStateChanged(user => {
           if(user) {
               this.loggedIn = true;
-              this.newPerson.userId = user.email;
-              //console.log(this.newPerson.userId)
+              this.formValues.newPerson.userId = user.email;
           } else {
               this.loggedIn = false;
           }
@@ -55,11 +54,11 @@ export default {
     },
     async addPerson () {
       const friendProperties = {
-        name: this.newPerson.name,
-        birthDay: this.newPerson.birthDay,
-        birthMonth: this.newPerson.birthMonth,
-        photo: this.newPerson.photo,
-        user: this.newPerson.userId
+        name: this.formValues.newPerson.name,
+        birthDay: this.formValues.newPerson.birthDay,
+        birthMonth: this.formValues.newPerson.birthMonth,
+        photo: this.formValues.newPerson.photo,
+        user: this.formValues.newPerson.userId
       }
       await db.collection("people").add(friendProperties)
       .then(this.$store.dispatch('getWholeDataAction'))
@@ -80,15 +79,6 @@ export default {
           userId: ''
         }
       },
-      birthDays: this.generateDays(31),
-      birthMonths: this.generateMonths(12),
-      newPerson: {
-          name: '',
-          birthDay: '',
-          birthMonth: '',
-          photo: '',
-          userId: ''
-      }
     }
   },
 }
