@@ -3,16 +3,12 @@
   <div v-if="error" class="error">
     {{error.message}}
   </div>
-  <form @submit.prevent="registerUser()">
-    Register
-    <div class="email">
-      <input type="email" v-model="email" placeholder="email" autocomplete="on">
-    </div>
-    <div class="password">
-      <input type="password" v-model="password" placeholder="password" autocomplete="on">
-    </div>
-    <button type="submit">Register</button>
-  </form>
+  <span class="headline">Register</span>
+  <FormulateForm class="form" v-model="formValues" @submit="registerUser()">
+    <FormulateInput type="email" validation="required" name="email" placeholder="Email"/>
+    <FormulateInput type="password" validation="required" name="password" placeholder="Password" />
+    <FormulateInput type="submit" name="Register"/>
+  </FormulateForm>
 </div>
 </template>
 
@@ -24,13 +20,14 @@ export default {
   name: 'register',
   data: function() {
     return {
+      formValues: {
+        email: '',
+        password: ''
+      },
       error: '',
-      email: '',
-      password: ''
     }
   },
   components: {
-
   },
   computed: {
     ...mapState([
@@ -39,7 +36,7 @@ export default {
   },
   methods: {
     async registerUser() {
-        firebase.auth().createUserWithEmailAndPassword(this.email, this.password)
+        firebase.auth().createUserWithEmailAndPassword(this.formValues.email, this.formValues.password)
         .then(
           user => {
             alert('User added with and logged in with success!')
@@ -56,5 +53,9 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-
+.form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
 </style>

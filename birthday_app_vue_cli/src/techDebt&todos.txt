@@ -9,6 +9,7 @@
 **DONE** catch authentication errors
 **DONE** add logged in status to state
 **DONE** only show userSpecificFriends in catalog view if logged in
+**DONE** create dynamic form component
 
 add spinner during loading times
 create footer
@@ -22,8 +23,9 @@ Improve catalog view
 add go back to top button to catalog view
 improve edit mode styling
 improve Add Person component styles
+fix bug where changing the name of a friend with the same name as another changes both names
 clean up css
-create dynamic form component
+Add text in homepage for case when logged in but no friends added yet
 ^ how to make each user have a collection of friends assigned to them
 
 

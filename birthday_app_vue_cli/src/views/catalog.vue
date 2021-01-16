@@ -93,7 +93,7 @@ export default {
         querySnapshot.forEach(doc => {
           doc.ref.delete()
           //fetches the list of friends again to display the updated list
-          .then(this.$store.dispatch('getWholeDataAction'))
+          .then(this.$store.dispatch('getUserSpecificDataAction'))
           .then(alert('Friend successfully removed!'))
         })
       })

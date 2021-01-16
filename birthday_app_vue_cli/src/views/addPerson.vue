@@ -1,39 +1,26 @@
 <template>
   <div>
-    <h3>Nova pessoa</h3>
-    <div class="form-wrapper">
-      <form @submit.prevent="addPerson" class="form">
-        <div class="form-item">
-          <label class="form-label">Nome: </label>
-          <input type="text" v-model="newPerson.name">
-        </div>
-        <div class="form-item">
-          <label class="form-label">URL: </label>
-          <input type="text" v-model="newPerson.photo">
-        </div>
-        <div class="form-item">
-          <label class="form-label">Dia: </label>
-          <select v-model="newPerson.birthDay">
-            <option v-for="birthDay in birthDays" :key="birthDay">
-              {{ birthDay }}
-            </option>
-          </select>
-        </div>
-        <div class="form-item">
-          <label class="form-label">Mês: </label>
-          <select v-model="newPerson.birthMonth">
-            <option v-for="birthMonth in birthMonths" :key="birthMonth">
-              {{ birthMonth }}
-            </option>
-          </select>
-        </div>
-        <div class="action-buttons">
-          <button type="submit" class="button">Submeter</button>
-          <router-link to="/" class="cancel-btn">Cancelar</router-link>
-        </div>
-        <pre>{{newPerson.userId}}</pre>
-      </form>
-    </div>
+    <span class="headline">Nova pessoa</span>
+      <FormulateForm class="form-addPerson" @submit="addPerson()">
+          <FormulateInput validation="required" type="text" v-model="newPerson.name" label="Name" placeholder="Name"/>
+          <FormulateInput type="text" v-model="newPerson.photo" label="URL" placeholder="URL" />
+          <FormulateInput 
+            type="select" 
+            :options="this.formValues.birthDays" 
+            label="Dia"
+            validation="required" 
+            v-model="newPerson.birthDay"
+            placeholder="Dia"/>
+          <FormulateInput type="select" 
+            :options="this.formValues.birthMonths" 
+            label="Mês"
+            validation="required" 
+            label-class="my-label-class"
+            v-model="newPerson.birthMonth"
+            placeholder="Mês"/>
+            <FormulateInput class="button" type="submit"/>
+            <router-link to="/" class="cancel-btn">Back</router-link>
+      </FormulateForm>
   </div>
 
 </template>
@@ -82,6 +69,17 @@ export default {
   },
   data () {
     return {
+      formValues: {
+        birthDays: this.generateDays(31),
+        birthMonths: this.generateMonths(12),
+        newPerson: {
+          name: '',
+          birthDay: '',
+          birthMonth: '',
+          photo: '',
+          userId: ''
+        }
+      },
       birthDays: this.generateDays(31),
       birthMonths: this.generateMonths(12),
       newPerson: {
@@ -96,47 +94,25 @@ export default {
 }
 
 </script>
-<style lang="scss" scoped>
+<style lang="scss">
  @import './styles/mixins.scss';
  @import './styles/colors.scss';
+ @import './styles/formulate.scss';
 
-
-h3 {
-  font-size: 28px;
+.headline {
+  margin-left: 20px;
+  font-size: 3em;
+  margin-bottom: 15px;
 }
-.form-wrapper {
+.form-addPerson {
   display: flex;
-  justify-content: center;
-}
-.form {
-  display: flex;
-  width: 15%;
+  width: 50%;
   flex-direction: column;
-}
-.form-label {
-  display: flex;
+  margin: 0 auto;
   align-items: center;
 }
-.form-item {
-  display: flex;
-  align-items: left;
-  justify-content: space-between;
-  margin: 10px;
-}
-select, input {
-  font-size: 16px;
-  height: 30px;
-  width: 70%;
-}
-.button {
-  @include button;
-  background: $button-primary;
-}
-.action-buttons {
-  display: flex;
-  flex-direction: column;
-  width: 50%;
-  justify-content: center;
-  align-self: center;
+
+.my-label-class{
+  color: blue;
 }
 </style>
