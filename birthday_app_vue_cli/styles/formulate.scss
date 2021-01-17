@@ -1,3 +1,4 @@
+//** BUTTON STYLES **//
 .formulate-input[data-classification=button] {
     display: flex;
     .formulate-input-wrapper {
@@ -8,7 +9,20 @@
       background: $button-primary;
       margin-left: 20px;
     }
-  }
+}
+
+.button-primary{
+  @include button;
+  background: $button-primary;
+}
+.button-secondary {
+  @include button;
+  background: $button-secondary;
+}
+.button:active{
+  top:0.1em;
+}
+//** BUTTON STYLES **//
 
 .formulate-input {
     width: 300px;

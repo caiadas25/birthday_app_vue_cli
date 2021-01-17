@@ -1,38 +1,22 @@
 <template>
 <div>
   <ul class="catalog-container">
+
     <li v-for="userSpecificFriend in userSpecificFriends" 
         v-bind:key="userSpecificFriend['.key']" 
         class="person-container-catalog">
         <div v-if="friendIdentifier === userSpecificFriend.name">
-        <form class="edit-form">
-          <div class="form-item">
-            <input type="text" class="form-item-name" v-model="editedFriend.name">
-          </div>
-          <div class="form-item-date-container">
-            <div class="form-item">
-              <select class="form-item-date" v-model="editedFriend.birthDay">
-                <option v-for="birthDay in birthDays" :key="birthDay">
-                  {{ birthDay }}
-                </option>
-              </select>
+        <FormulateForm class="edit-form">
+            <FormulateInput input-class="edit-form-input-name" class="edit-form-input-text" type="text" v-model="editedFriend.name"/>
+            <div class="form-item-date-container">
+              <FormulateInput type="select" input-class="edit-form-input-select" :options="birthDays" v-model="editedFriend.birthDay"/>
+              <span class="form-item-date-span">of</span>
+              <FormulateInput type="select" input-class="edit-form-input-select" :options="birthMonths" v-model="editedFriend.birthMonth"/>
             </div>
-            <span class="form-item-date-span">of</span>
-            <div class="form-item">
-              <select class="form-item-date" v-model="editedFriend.birthMonth">
-                <option v-for="birthMonth in birthMonths" :key="birthMonth">
-                  {{ birthMonth }}
-                </option>
-              </select>
-            </div>
-          </div>
-          <div class="form-item-url-container">
-            <label class="form-item-url-label">Photo URL: </label>
-            <input type="text" class="form-item-url" v-model="editedFriend.photo">
-          </div>
-        </form>
-          <div class="button-primary" @click="onEditSubmit()">Confirm</div>
-          <div class="button-secondary" @click="onCancel(userSpecificFriend.name)">Cancel</div>
+            <FormulateInput type="text" label="Photo URL" class="edit-form-input-text" v-model="editedFriend.photo"/>
+        </FormulateForm>
+        <div class="button-primary" @click="onEditSubmit()">Confirm</div>
+        <div class="button-secondary" @click="onCancel(userSpecificFriend.name)">Cancel</div>
         </div>
         <person v-else
           :birthMonth="userSpecificFriend.birthMonth"
@@ -130,46 +114,44 @@ export default {
 }
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss">
  @import './styles/mixins.scss';
  @import './styles/colors.scss';
-
-.person-container-catalog .person-container {
-  box-shadow: none;
-}
+ @import './styles/formulate.scss';
 .edit-form {
   display: flex;
   height: 400px;
   flex-direction: column;
   justify-content: center;
-  width: 100%;
+  width: 90%;
+  margin: 0 auto;
 }
-.form-item-name{
+.form-item-date-span {
+  display: flex;
+  align-self: flex-end;
+  line-height: 50px;
+  padding: 0 5px 0 5px;
+}
+.edit-form-input-text {
+  text-align: left;
+  width: 70%;
+}
+.edit-form-input-select {
+  font-size: 2em;
+}
+.edit-form-input-name {
   font-size: 3em;
   font-weight: 500;
-  display: flex;
 }
+.person-container-catalog .person-container {
+  box-shadow: none;
+}
+
 .form-item-date-container{
   display: flex;
-}
-.form-item-date {
-  font-size: 2em;
-  &-span {
-    font-size: 1.5em;
-  }
+  width: 40%;
 }
 
-.form-item-url {
-  font-size: 2em;
-}
-
-.form-item-url-container {
-  display: flex;
-  flex-direction: column;
-}
-.form-item-url-label{
-  text-align: left;
-}
 .catalog-container {
   align-items: center;
   display: flex;
@@ -184,19 +166,5 @@ export default {
   box-shadow: 5px 5px 15px rgba(186,126,126, .5);
 }
 
-
-
-
-.button-primary{
-  @include button;
-  background: $button-primary;
-}
-.button-secondary {
-  @include button;
-  background: $button-secondary;
-}
-.button:active{
-  top:0.1em;
-}
 
 </style>

@@ -3,7 +3,7 @@
     <span class="headline">Nova pessoa</span>
       <FormulateForm class="form-addPerson" v-model="formValues.newPerson" @submit="addPerson()">
           <FormulateInput type="text" name="name" label="Name" placeholder="Name" validation="required"/>
-          <FormulateInput type="text"name="photo" label="URL" placeholder="URL" />
+          <FormulateInput type="text" name="photo" label="URL" placeholder="URL"/>
           <FormulateInput 
             type="select" 
             :options="this.formValues.birthDays" 
