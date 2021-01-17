@@ -12,6 +12,7 @@
 **DONE** create dynamic form component
 
 add spinner during loading times
+create sort by alphabetical order and sort by ascending and descending order buttons for catalog page
 create footer
 improve authentication
 Resolve bug of 2 birthdays on the same day only showing one of them.

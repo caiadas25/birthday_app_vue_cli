@@ -29,6 +29,7 @@
 import db from '../firebase/firebaseInit.js';
 import { mapState } from 'vuex'
 import firebase from 'firebase';
+import { generateDays, generateMonths} from '../utils';
 
 export default {
   name: 'addPerson',
@@ -44,14 +45,6 @@ export default {
       })
   },
   methods: {
-    generateDays(numberOfDays){
-      return [...Array(numberOfDays + 1 ).keys()]
-    },
-    generateMonths(numberOfMonths){
-      return  ([...Array(numberOfMonths).keys()]).map(function(num) {
-          return moment().month(num).format("MMMM")
-      })
-    },
     async addPerson () {
       const friendProperties = {
         name: this.formValues.newPerson.name,
@@ -69,8 +62,8 @@ export default {
   data () {
     return {
       formValues: {
-        birthDays: this.generateDays(31),
-        birthMonths: this.generateMonths(12),
+        birthDays: generateDays(31),
+        birthMonths: generateMonths(12),
         newPerson: {
           name: '',
           birthDay: '',

@@ -53,13 +53,14 @@
 import person from '../components/person';
 import { mapState } from 'vuex'
 import db from '../firebase/firebaseInit.js';
+import { generateDays, generateMonths} from '../utils';
 
 export default {
   name: 'catalog',
   data: function() {
     return {
-      birthDays: this.generateDays(31),
-      birthMonths: this.generateMonths(12),
+      birthDays: generateDays(31),
+      birthMonths: generateMonths(12),
       friendIdentifier: '',
       editedFriend: {
           name: '',
@@ -79,14 +80,6 @@ export default {
     ])
   },
   methods: {
-    generateDays(numberOfDays){
-      return [...Array(numberOfDays + 1 ).keys()]
-    },
-    generateMonths(numberOfMonths){
-      return  ([...Array(numberOfMonths).keys()]).map(function(num) {
-          return moment().month(num).format("MMMM")
-      })
-    },
     onRemove(friendName) {
       //finds the friend with the attribute "name" which matches the name of the friend we want to delete.
       db.collection('people').where('name', '==', friendName).get().then(querySnapshot => {
@@ -125,10 +118,13 @@ export default {
             user: this.editedFriend.user,
           })
           //fetches the list of friends again to display the updated list
-          .then(alert('Friend successfully edited!'))
+          .then(console.log('Friend successfully edited!'))
           .then(this.$store.dispatch('getUserSpecificDataAction'))
         })
       })
+      //resets the friend identifier to close edit mode
+      this.friendIdentifier = '';
+      this.$store.dispatch('getUserSpecificDataAction');
     }
   }
 }

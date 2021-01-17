@@ -35,6 +35,16 @@ function isPropertyEmpty(property) {
   return property.length === 0
 }
 
+
+function generateDays(numberOfDays){
+  return [...Array(numberOfDays + 1 ).keys()]
+}
+function generateMonths(numberOfMonths){
+  return  ([...Array(numberOfMonths).keys()]).map(function(num) {
+      return moment().month(num).format("MMMM")
+  })
+}
+
 function buildObject(firebaseData){
   for (let i = 0; i < firebaseData.length; i++) {
     let birthDay = firebaseData[i].birthDay;
@@ -58,5 +68,7 @@ function buildObject(firebaseData){
 }
 
 export {
-  buildObject
+  buildObject,
+  generateDays,
+  generateMonths
 };
