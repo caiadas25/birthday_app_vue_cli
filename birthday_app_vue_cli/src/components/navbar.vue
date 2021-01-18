@@ -1,9 +1,6 @@
 <template>
   <div class="navbar-wrapper">
-    <div class="navbar-item-wrapper">
-      <logoutButton class="navbar-item"></logoutButton>
-    </div>
-    <div v-for="(item, index) in navItems"
+    <div v-for="(item, index) in newNavItems()"
          :key="index"
          class="navbar-item">
       <router-link :class="$route.path === item.path ? 'highlighted' : ''" 
@@ -12,11 +9,12 @@
         {{item.title}}
       </router-link>
     </div>
+    <logoutButton class="navbar-item"/>
   </div>
 </template>
 <script>
 import logoutButton from '../components/logoutButton';
-import { mapState, mapGetters, mapActions, mapMutations } from 'vuex'
+import { mapState } from 'vuex'
 
 export default {
   name: 'navbar',
@@ -29,11 +27,37 @@ export default {
   },
   computed: {
     ...mapState([
-      'navItems'
+      'navItems',
+      'loggedInStatus'
     ]),
   },
 
   methods: {
+    newNavItems() {
+      if (this.loggedInStatus) {
+      let newNavItems = [
+          {
+            path: "/",
+            title: "Homepage"
+          },
+          {
+            path: "/catalog",
+            title: "Catalog"
+          },
+          {
+            path: "/addPerson",
+            title: "Add Person"
+          },
+          {
+            path: "/register",
+            title: "Register"
+          }
+        ]
+        return newNavItems;
+      } else {
+        return this.navItems;
+      }
+    }
   },
 
 }
@@ -50,13 +74,9 @@ export default {
   width: 100%;
   height: fit-content;
   display: flex;
-}
-.navbar-item-wrapper {
-  width: 100%;
-  height: fit-content;
-  display: flex;
   justify-content: flex-end;
 }
+
 .navbar-item {
   width: 10%;
   height: 100px;

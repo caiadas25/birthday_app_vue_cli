@@ -1,9 +1,6 @@
 <template>
 <div :class="this.loggedInStatus ? 'navbar-item' : 'hidden'">
-    Logged in
-    <span v-if="this.loggedInStatus">Yes</span>
-    <span v-else>No</span>
-    <button @click="logoutUser">Signout</button>
+    <button class="button-primary" @click="logoutUser">Signout</button>
 </div>
 </template>
 
@@ -48,6 +45,8 @@ export default {
 </script>
 
 <style lang="scss" scoped>
+ @import './styles/mixins.scss';
+
 .navbar-item {
   display: flex;
 }

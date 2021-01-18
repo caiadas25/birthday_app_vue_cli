@@ -1,7 +1,7 @@
 <template>
 <div>
   <div v-if="!this.loggedInStatus">
-    Please Login to add friends to your list!
+    Please Login to see your friend's birthdays and add more!
   </div>
   <div v-if="this.userSpecificFriends.length">
     <!--v-if above only lets the template render when the state has fetched the friends from firestore-->

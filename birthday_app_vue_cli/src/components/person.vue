@@ -21,8 +21,7 @@ export default {
   props: ['name', 'birthDay', 'birthMonth', 'photo'],
 
   methods: {
-    addDefaultImage(friendPhoto) {
-      let photo = friendPhoto;
+    addDefaultImage(photo) {
       return !photo ? 'https://homepages.cae.wisc.edu/~ece533/images/cat.png' : photo;
     },
   },

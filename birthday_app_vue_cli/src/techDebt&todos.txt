@@ -30,5 +30,6 @@ improve Add Person component styles
 fix bug where changing the name of a friend with the same name as another changes both names
 clean up css
 Add text in homepage for case when logged in but no friends added yet
+hide 'login' nav button if already logged in
 
 

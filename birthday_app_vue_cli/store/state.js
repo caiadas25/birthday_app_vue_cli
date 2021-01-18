@@ -16,13 +16,13 @@ export const state = {
         title: "Add Person"
       },
       {
+        path: "/register",
+        title: "Register"
+      },
+      {
         path: "/login",
         title: "Login"
       },
-      {
-        path: "/register",
-        title: "Register"
-      }
     ]
   };
 

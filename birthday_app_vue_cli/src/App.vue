@@ -1,5 +1,5 @@
 <template>
-  <div id="app">
+  <div v-if="this.friends.length" id="app">
     <navbar></navbar>
     <router-view/>
   </div>
@@ -14,6 +14,11 @@ export default {
   components: {
   'navbar': navbar,
 },
+  computed: {
+    ...mapState([
+      'friends',
+    ]),
+  },
   created(){
     this.$store.dispatch('getWholeDataAction')
     this.$store.dispatch('getUserSpecificDataAction')
