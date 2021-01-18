@@ -8,7 +8,7 @@
           {{birthDay}} of {{birthMonth}}
         </div>
       </div>
-      <img class="person-photo-element" :src=photo alt="photo">
+      <img class="person-photo-element" :src=addDefaultImage(photo) alt="photo">
   </div>
 </template>
 <script>
@@ -17,11 +17,14 @@ import db from '../firebase/firebaseInit.js';
 export default {
   name: 'person',
   computed: {
-
   },
   props: ['name', 'birthDay', 'birthMonth', 'photo'],
 
   methods: {
+    addDefaultImage(friendPhoto) {
+      let photo = friendPhoto;
+      return !photo ? 'https://homepages.cae.wisc.edu/~ece533/images/cat.png' : photo;
+    },
   },
 }
 </script>

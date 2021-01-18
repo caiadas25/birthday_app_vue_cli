@@ -10,10 +10,13 @@
 **DONE** add logged in status to state
 **DONE** only show userSpecificFriends in catalog view if logged in
 **DONE** create dynamic form component
+**DONE** add userId to each new friend 
+**DONE** add placeholder image
 
 add spinner during loading times
 create sort by alphabetical order and sort by ascending and descending order buttons for catalog page
 create footer
+add birthYear to be able to display age
 improve authentication
 Resolve bug of 2 birthdays on the same day only showing one of them.
 Add validation to make all fields in the form mandatory.
@@ -27,23 +30,5 @@ improve Add Person component styles
 fix bug where changing the name of a friend with the same name as another changes both names
 clean up css
 Add text in homepage for case when logged in but no friends added yet
-^ how to make each user have a collection of friends assigned to them
 
 
-
-
-'Collection' of users
-|
-|
-Each user is a 'document'
-|
-|
-each document has a 'friends' collection
-|
-|
-each 'friends' collection has the structure: birthday, birthMonth, name, photo.
-
-
-
-add userId to each new friend 
-userId is the userId of the logged in user
