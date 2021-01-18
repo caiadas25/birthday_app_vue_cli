@@ -1,6 +1,6 @@
 <template>
   <div class="navbar-wrapper">
-    <div v-for="(item, index) in newNavItems()"
+    <div v-for="(item, index) in newNavItemsIfLoggedIn()"
          :key="index"
          class="navbar-item">
       <router-link :class="$route.path === item.path ? 'highlighted' : ''" 
@@ -33,7 +33,7 @@ export default {
   },
 
   methods: {
-    newNavItems() {
+    newNavItemsIfLoggedIn() {
       if (this.loggedInStatus) {
       let newNavItems = [
           {
@@ -47,10 +47,6 @@ export default {
           {
             path: "/addPerson",
             title: "Add Person"
-          },
-          {
-            path: "/register",
-            title: "Register"
           }
         ]
         return newNavItems;

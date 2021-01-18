@@ -1,18 +1,26 @@
 <template>
+<div>
   <div v-if="this.friends.length" id="app">
     <navbar></navbar>
     <router-view/>
   </div>
+  <div v-else>
+    <spinner/>
+  </div>
+</div>
+
 </template>
 
 <script>
 import navbar from './components/navbar';
+import spinner from './components/spinner';
 import { mapState } from 'vuex'
 
 export default {
   name: 'App',
   components: {
   'navbar': navbar,
+  'spinner': spinner
 },
   computed: {
     ...mapState([

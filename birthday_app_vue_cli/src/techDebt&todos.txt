@@ -12,14 +12,15 @@
 **DONE** create dynamic form component
 **DONE** add userId to each new friend 
 **DONE** add placeholder image
+**DONE** hide 'login' nav button if already logged in
+**DONE** add spinner during loading times
+**DONE** Add validation to make all fields in the form mandatory.
 
-add spinner during loading times
 create sort by alphabetical order and sort by ascending and descending order buttons for catalog page
 create footer
 add birthYear to be able to display age
 improve authentication
 Resolve bug of 2 birthdays on the same day only showing one of them.
-Add validation to make all fields in the form mandatory.
 Add telegram notification on date of birthday.
 Add way to make account and add your own friends birthdays.
 Make the project online and include it in nunocaiadas.com
@@ -30,6 +31,6 @@ improve Add Person component styles
 fix bug where changing the name of a friend with the same name as another changes both names
 clean up css
 Add text in homepage for case when logged in but no friends added yet
-hide 'login' nav button if already logged in
+implement router guards to prevent access to login and register pages when logged in
 
 
