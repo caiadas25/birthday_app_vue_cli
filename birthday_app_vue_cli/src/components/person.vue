@@ -48,6 +48,8 @@ export default {
 .person-details-container {
   flex-direction: column;
   padding-right: 25px;
+  flex: 1;
+  padding-left: 50px;
 }
 .person-date-element {
   font-size: 2em;
@@ -61,5 +63,7 @@ export default {
   width: 300px;
   height: 300px;
   object-fit: cover;
+  flex: 1.5; 
+  padding-right: 25px;
 }
 </style>

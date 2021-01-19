@@ -15,14 +15,11 @@
             :options="this.formValues.birthMonths" 
             label="Mês"
             name="birthMonth"
-            label-class="my-label-class"
             placeholder="Mês"
             validation="required" />
             <FormulateInput class="button" type="submit"/>
-            <router-link to="/" class="cancel-btn">Back</router-link>
       </FormulateForm>
   </div>
-
 </template>
 <script>
 
@@ -86,16 +83,17 @@ export default {
   margin-left: 20px;
   font-size: 3em;
   margin-bottom: 15px;
+  margin-top: 50px;
 }
 .form-addPerson {
+  background: $card-primary;
   display: flex;
-  width: 50%;
+  width: 25%;
   flex-direction: column;
   margin: 0 auto;
   align-items: center;
-}
-
-.my-label-class{
-  color: blue;
+  padding: 25px;
+  margin-top: 50px;
+  border-radius: 10px;
 }
 </style>

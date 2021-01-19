@@ -30,7 +30,6 @@
     </li>
   </ul>
   <backToTopButton/>
-  <router-link to="/" >Back</router-link>
 </div>
 </template>
 

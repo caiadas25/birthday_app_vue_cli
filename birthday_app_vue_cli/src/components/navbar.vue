@@ -71,6 +71,7 @@ export default {
   height: fit-content;
   display: flex;
   justify-content: flex-end;
+  margin-bottom: 100px;
 }
 
 .navbar-item {

@@ -23,7 +23,6 @@ export default {
         let scrollTotal = rootElement.scrollHeight - rootElement.clientHeight
         if ((rootElement.scrollTop / scrollTotal) > 0.20) {
             this.backToTopButtonShow = true;
-            console.log('test')
         } else {
             this.backToTopButtonShow = false;
         }

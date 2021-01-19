@@ -37,7 +37,7 @@ export default {
             alert('logged out');
             this.$router.push('/')
           } catch (err) {
-              //console.log(err)
+            console.log(err)
           }
       }
   }
