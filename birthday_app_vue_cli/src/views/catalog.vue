@@ -14,6 +14,7 @@
               <FormulateInput type="select" input-class="edit-form-input-select" :options="birthMonths" v-model="editedFriend.birthMonth"/>
             </div>
             <FormulateInput type="text" label="Photo URL" class="edit-form-input-text" v-model="editedFriend.photo"/>
+            <FormulateInput type="select" label="Birth Year" class="edit-form-input-select" :options="birthYears" v-model="editedFriend.birthYear"/>
         </FormulateForm>
         <div class="button-primary" @click="onEditSubmit()">Confirm</div>
         <div class="button-secondary" @click="onCancel(userSpecificFriend.name)">Cancel</div>
@@ -22,7 +23,8 @@
           :birthMonth="userSpecificFriend.birthMonth"
           :birthDay="userSpecificFriend.birthDay"
           :name="userSpecificFriend.name"
-          :photo="userSpecificFriend.photo"></person>
+          :photo="userSpecificFriend.photo"
+          :age="userSpecificFriend.age"></person>
         <div v-if="!(friendIdentifier === userSpecificFriend.name)">
           <div class="button-primary" @click="onEdit(userSpecificFriend)">Edit</div>
           <div class="button-secondary" @click="onRemove(userSpecificFriend.name)">Delete</div>
@@ -38,7 +40,7 @@ import person from '../components/person';
 import backToTopButton from '../components/backToTopButton';
 import { mapState } from 'vuex'
 import db from '../firebase/firebaseInit.js';
-import { generateDays, generateMonths} from '../utils';
+import { generateDays, generateMonths, generateYears } from '../utils';
 
 export default {
   name: 'catalog',
@@ -46,12 +48,14 @@ export default {
     return {
       birthDays: generateDays(31),
       birthMonths: generateMonths(12),
+      birthYears: generateYears(50),
       friendIdentifier: '',
       editedFriend: {
           name: '',
           birthDay: '',
           birthMonth: '',
           photo: '',
+          birthYear: ''
       }
     }
   },
@@ -85,6 +89,7 @@ export default {
       this.editedFriend.birthDay = friend.birthDay
       this.editedFriend.birthMonth = friend.birthMonth
       this.editedFriend.user = friend.user
+      this.editedFriend.birthYear = friend.birthYear
     },
     onCancel() {
       this.friendIdentifier = '';
@@ -92,6 +97,7 @@ export default {
       this.editedFriend.photo = '';
       this.editedFriend.birthDay = '';
       this.editedFriend.birthMonth = '';
+      this.editedFriend.birthYear = '';
     },
     onEditSubmit() {
         db.collection('people').where('name', '==', this.friendIdentifier).get().then(querySnapshot => {
@@ -102,6 +108,7 @@ export default {
             birthDay: this.editedFriend.birthDay,
             birthMonth: this.editedFriend.birthMonth,
             user: this.editedFriend.user,
+            birthYear: this.editedFriend.birthYear
           })
           //fetches the list of friends again to display the updated list
           .then(console.log('Friend successfully edited!'))

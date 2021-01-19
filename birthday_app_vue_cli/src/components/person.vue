@@ -7,6 +7,7 @@
         <div class="person-date-element">
           {{birthDay}} of {{birthMonth}}
         </div>
+        <span v-if="age">Vai fazer: {{age}}</span>
       </div>
       <img class="person-photo-element" :src=addDefaultImage(photo) alt="photo">
   </div>
@@ -18,7 +19,13 @@ export default {
   name: 'person',
   computed: {
   },
-  props: ['name', 'birthDay', 'birthMonth', 'photo'],
+  props: [
+    'name',
+    'birthDay',
+    'birthMonth',
+    'photo',
+    'age'
+    ],
 
   methods: {
     addDefaultImage(photo) {

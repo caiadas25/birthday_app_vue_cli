@@ -44,6 +44,13 @@ function generateMonths(numberOfMonths){
       return moment().month(num).format("MMMM")
   })
 }
+function generateYears(numberOfYears) {
+  const year = new Date().getFullYear();
+  return Array.from({length: numberOfYears}, (v, i) => year - numberOfYears + i + 1).reverse();
+}
+function getAge(birthYear) {
+  return new Date().getFullYear() - birthYear;
+}
 
 function buildObject(firebaseData){
   for (let i = 0; i < firebaseData.length; i++) {
@@ -55,6 +62,7 @@ function buildObject(firebaseData){
     firebaseData[i].birthdaysInFuture = getDaysInTheFuture(firebaseData[i].birthdaysInMiliseconds);
     firebaseData[i].converted = convertMilisecondsToDate(firebaseData[i].birthdaysInFuture);
     firebaseData[i].parsed = parseDates(firebaseData[i].converted);
+    firebaseData[i].age = getAge(firebaseData[i].birthYear);
     //if "converted" property is empty (meaning the date is in the past, give it a huge value so that it goes
     //to the end of the list with the "sortedObjects" parsing function)
     if (isPropertyEmpty(firebaseData[i].converted) && !(allDates(firebaseData[i].birthdaysInMiliseconds).getTime() === getCurrentDayInDateFormat().getTime())){
@@ -70,5 +78,6 @@ function buildObject(firebaseData){
 export {
   buildObject,
   generateDays,
-  generateMonths
+  generateMonths,
+  generateYears
 };

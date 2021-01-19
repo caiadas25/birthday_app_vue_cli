@@ -17,6 +17,11 @@
             name="birthMonth"
             placeholder="Mês"
             validation="required" />
+          <FormulateInput type="select" 
+            :options="this.formValues.birthYears" 
+            label="Ano de Nascimento"
+            name="birthYear"
+            placeholder="Ano"/>
             <FormulateInput class="button" type="submit"/>
       </FormulateForm>
   </div>
@@ -26,7 +31,7 @@
 import db from '../firebase/firebaseInit.js';
 import { mapState } from 'vuex'
 import firebase from 'firebase';
-import { generateDays, generateMonths} from '../utils';
+import { generateDays, generateMonths, generateYears } from '../utils';
 
 export default {
   name: 'addPerson',
@@ -48,7 +53,8 @@ export default {
         birthDay: this.formValues.newPerson.birthDay,
         birthMonth: this.formValues.newPerson.birthMonth,
         photo: this.formValues.newPerson.photo,
-        user: this.formValues.newPerson.userId
+        user: this.formValues.newPerson.userId,
+        birthYear: this.formValues.newPerson.birthYear
       }
       await db.collection("people").add(friendProperties)
       .then(this.$store.dispatch('getWholeDataAction'))
@@ -61,12 +67,14 @@ export default {
       formValues: {
         birthDays: generateDays(31),
         birthMonths: generateMonths(12),
+        birthYears: generateYears(50),
         newPerson: {
           name: '',
           birthDay: '',
           birthMonth: '',
           photo: '',
-          userId: ''
+          userId: '',
+          birthYear: ''
         }
       },
     }

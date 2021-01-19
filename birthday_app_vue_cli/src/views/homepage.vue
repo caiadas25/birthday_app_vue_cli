@@ -11,7 +11,8 @@
         :birthMonth="this.getBirthMonthOfFirstFriend()"
         :birthDay="this.getBirthDayOfFirstFriend()"
         :name="this.getNameOfFirstFriend()"
-        :photo="this.getPhotoOfFirstFriend()"></person>
+        :photo="this.getPhotoOfFirstFriend()"
+        :age="this.getAgeOfFirstFriend()"></person>
   </div>
 </div>
 
@@ -68,7 +69,9 @@ export default {
       // is a negative number larger than -86400000 (the number of ms in a day) that means there are no more birthdays in the current year 
       return (this.userSpecificFriends[0].parsed.length === 0) && (dateInMilisecondsOfNextFriend <= -86400000) ? false : true;
     },
-
+    getAgeOfFirstFriend() {
+      return this.userSpecificFriends[0].age;
+    },
     getPhotoOfFirstFriend() {
       return this.userSpecificFriends[0].photo;
     },
