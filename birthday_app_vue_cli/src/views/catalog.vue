@@ -29,12 +29,14 @@
         </div>
     </li>
   </ul>
+  <backToTopButton/>
   <router-link to="/" >Back</router-link>
 </div>
 </template>
 
 <script>
 import person from '../components/person';
+import backToTopButton from '../components/backToTopButton';
 import { mapState } from 'vuex'
 import db from '../firebase/firebaseInit.js';
 import { generateDays, generateMonths} from '../utils';
@@ -56,6 +58,7 @@ export default {
   },
   components: {
     'person': person,
+    'backToTopButton': backToTopButton,
   },
   computed: {
     ...mapState([
@@ -118,6 +121,7 @@ export default {
  @import './styles/mixins.scss';
  @import './styles/colors.scss';
  @import './styles/formulate.scss';
+ 
 .edit-form {
   display: flex;
   height: 400px;

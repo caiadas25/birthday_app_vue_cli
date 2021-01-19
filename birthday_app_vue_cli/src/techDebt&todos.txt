@@ -15,18 +15,19 @@
 **DONE** hide 'login' nav button if already logged in
 **DONE** add spinner during loading times
 **DONE** Add validation to make all fields in the form mandatory.
+**DONE* add go back to top button to catalog view
+**DONE** Improve catalog view
+**DONE** improve edit mode styling
 
 create sort by alphabetical order and sort by ascending and descending order buttons for catalog page
 create footer
 add birthYear to be able to display age
 improve authentication
+improve person component styles (alignment etc)
 Resolve bug of 2 birthdays on the same day only showing one of them.
 Add telegram notification on date of birthday.
 Add way to make account and add your own friends birthdays.
 Make the project online and include it in nunocaiadas.com
-Improve catalog view
-add go back to top button to catalog view
-improve edit mode styling
 improve Add Person component styles
 fix bug where changing the name of a friend with the same name as another changes both names
 clean up css
