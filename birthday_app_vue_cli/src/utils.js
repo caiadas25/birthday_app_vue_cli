@@ -67,6 +67,9 @@ function buildObject(firebaseData){
     //to the end of the list with the "sortedObjects" parsing function)
     if (isPropertyEmpty(firebaseData[i].converted) && !(allDates(firebaseData[i].birthdaysInMiliseconds).getTime() === getCurrentDayInDateFormat().getTime())){
        firebaseData[i].converted = 9999999999999999;
+       //if the birthday has already passed, the next one is in the next year, thus the age 
+       //is equal to (currentYear - birthYear) + 1
+       firebaseData[i].age = getAge(firebaseData[i].birthYear) + 1;
     }
   }
   let sortedObjects = firebaseData.sort((a, b) => (a.converted > b.converted) ? 1 : -1)
