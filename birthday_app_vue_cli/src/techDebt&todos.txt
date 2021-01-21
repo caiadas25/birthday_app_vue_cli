@@ -38,4 +38,6 @@ add better placeholder image
 Add text in homepage for case when logged in but no friends added yet
 implement router guards to prevent access to login and register pages when logged in
 add search function in catalog (search by name)
+add dark mode
+add english language toggle
 

@@ -15,7 +15,8 @@
 import navbar from './components/navbar';
 import spinner from './components/spinner';
 import { mapState } from 'vuex'
-
+import { Telegraf } from 'telegraf';
+import { test } from './telegram';
 export default {
   name: 'App',
   components: {
@@ -25,12 +26,15 @@ export default {
   computed: {
     ...mapState([
       'friends',
+      'userSpecificFriends'
     ]),
   },
   created(){
     this.$store.dispatch('getWholeDataAction')
     this.$store.dispatch('getUserSpecificDataAction')
     this.$store.dispatch('getLoggedInStatus')
+    let friends = this.userSpecificFriends;
+    console.log(friends)
   },
 }
 </script>
