@@ -6,7 +6,6 @@
   <div v-if="this.userSpecificFriends.length">
     <!--v-if above only lets the template render when the state has fetched the friends from firestore-->
     <h1>{{getHeadline()}}</h1>
-    <pre>{{batatas()}}</pre>
     <!--Create a v-for for the "person" component to display more than one when applicable-->
     <person v-if="this.checkIfThereAreMoreBirthdaysThisYear()"
         :birthMonth="this.getBirthMonthOfFirstFriend()"
@@ -15,6 +14,7 @@
         :photo="this.getPhotoOfFirstFriend()"
         :age="this.getAgeOfFirstFriend()"></person>
   </div>
+  <!-- <pre>{{getNameOfAllFriends()}}</pre> -->
 </div>
 
 </template>
@@ -23,7 +23,7 @@
 import person from '../components/person';
 import navbar from '../components/navbar';
 import { Telegraf } from 'telegraf';
-import { initialeTelegramBot } from '../telegram';
+import { initializeTelegramBot, arrayTelegramBot } from '../telegram';
 import { 
   mapState, 
   mapGetters, 
@@ -43,8 +43,10 @@ export default {
 
   name: 'homepage',
 
-  mounted(){
-  },
+  // async beforeMount(){
+  //   await this.$store.dispatch('getUserSpecificDataAction')
+  //   await this.batatas()
+  // },
 
   computed: {
     ...mapGetters([
@@ -62,18 +64,19 @@ export default {
 
   methods: {
 
-    batatas() {
-      let userSpecificFriends = this.userSpecificFriends;
-      for (let i = 0; i < userSpecificFriends.length; i++) {
-        if (userSpecificFriends[i].name) {
-            initialeTelegramBot(userSpecificFriends[i].name)
-            console.log(this.userSpecificFriends[i].name)
 
-            return userSpecificFriends[i].name;
-        }
-      }
-      return ;
-    },
+    // getNameOfAllFriends() {
+    //   let userSpecificFriends = this.userSpecificFriends;
+    //   let result = userSpecificFriends.map(a => a.name);
+    //   arrayTelegramBot(result.join(', '));
+    //   return result.join(', ');
+    // },
+
+    // batatas() {
+    //   initializeTelegramBot(this.userSpecificFriends[0].name, this.userSpecificFriends[0].parsed)
+      
+    //   return this.userSpecificFriends[0].name;
+    // },
 
     getHeadline() {
       return this.checkIfThereAreMoreBirthdaysThisYear() ? 'Next birthday:' : 'No more birthdays this year :(';

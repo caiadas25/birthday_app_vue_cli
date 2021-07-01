@@ -41,3 +41,6 @@ add search function in catalog (search by name)
 add dark mode
 add english language toggle
 
+verificar se a data atual é alguma das datas num array de datas, se sim, enviar uma mensagem com
+essa data + nome da pessoa correspondente
+get name and parsed from each userSpecificFriend and display those

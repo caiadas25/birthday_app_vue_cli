@@ -7,6 +7,7 @@
   <div v-else>
     <spinner/>
   </div>
+  <pre class="hidden">{{batatas()}}</pre>
 </div>
 
 </template>
@@ -16,7 +17,7 @@ import navbar from './components/navbar';
 import spinner from './components/spinner';
 import { mapState } from 'vuex'
 import { Telegraf } from 'telegraf';
-import { test } from './telegram';
+import { initializeTelegramBot, arrayTelegramBot } from './telegram';
 export default {
   name: 'App',
   components: {
@@ -29,12 +30,36 @@ export default {
       'userSpecificFriends'
     ]),
   },
+  mounted() {
+    
+  },
+  
+  methods: {
+    // getNameOfAllFriends() {
+    //   let userSpecificFriends = this.userSpecificFriends;
+    //   let names = userSpecificFriends.map(a => a.name);
+    //   arrayTelegramBot(names.join(', '));
+    //   return names.join(', ');
+    // },
+
+    batatas() {
+      return this.$store.dispatch('getUserSpecificDataAction').then(() => {
+        let userSpecificFriends = this.userSpecificFriends;
+        let arrayOfNames = userSpecificFriends.map(a => a.name);
+        let finalArray = arrayOfNames.join(', ');
+        let name = this.userSpecificFriends[0].name;
+        let date = this.userSpecificFriends[0].parsed;
+        console.log(userSpecificFriends)
+        initializeTelegramBot(name, date.join(), finalArray, userSpecificFriends);
+      })
+    },
+  },
   created(){
     this.$store.dispatch('getWholeDataAction')
     this.$store.dispatch('getUserSpecificDataAction')
     this.$store.dispatch('getLoggedInStatus')
-    let friends = this.userSpecificFriends;
-    console.log(friends)
+
+    // this.initializeTelegramBot(this.userSpecificFriends[0].name, this.userSpecificFriends[0].parsed)
   },
 }
 </script>
@@ -47,7 +72,9 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
-
+.hidden {
+  display: none;
+}
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
