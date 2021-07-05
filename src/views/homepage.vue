@@ -43,11 +43,6 @@ export default {
 
   name: 'homepage',
 
-  // async beforeMount(){
-  //   await this.$store.dispatch('getUserSpecificDataAction')
-  //   await this.batatas()
-  // },
-
   computed: {
     ...mapGetters([
     ]),
@@ -63,20 +58,6 @@ export default {
   },
 
   methods: {
-
-
-    // getNameOfAllFriends() {
-    //   let userSpecificFriends = this.userSpecificFriends;
-    //   let result = userSpecificFriends.map(a => a.name);
-    //   arrayTelegramBot(result.join(', '));
-    //   return result.join(', ');
-    // },
-
-    // batatas() {
-    //   initializeTelegramBot(this.userSpecificFriends[0].name, this.userSpecificFriends[0].parsed)
-      
-    //   return this.userSpecificFriends[0].name;
-    // },
 
     getHeadline() {
       return this.checkIfThereAreMoreBirthdaysThisYear() ? 'Next birthday:' : 'No more birthdays this year :(';

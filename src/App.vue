@@ -7,7 +7,6 @@
   <div v-else>
     <spinner/>
   </div>
-  <pre class="hidden">{{batatas()}}</pre>
 </div>
 
 </template>
@@ -16,8 +15,6 @@
 import navbar from './components/navbar';
 import spinner from './components/spinner';
 import { mapState } from 'vuex'
-import { Telegraf } from 'telegraf';
-import { initializeTelegramBot, arrayTelegramBot } from './telegram';
 export default {
   name: 'App',
   components: {
@@ -41,18 +38,6 @@ export default {
     //   arrayTelegramBot(names.join(', '));
     //   return names.join(', ');
     // },
-
-    batatas() {
-      return this.$store.dispatch('getUserSpecificDataAction').then(() => {
-        let userSpecificFriends = this.userSpecificFriends;
-        let arrayOfNames = userSpecificFriends.map(a => a.name);
-        let finalArray = arrayOfNames.join(', ');
-        let name = this.userSpecificFriends[0].name;
-        let date = this.userSpecificFriends[0].parsed;
-        console.log(userSpecificFriends)
-        initializeTelegramBot(name, date.join(), finalArray, userSpecificFriends);
-      })
-    },
   },
   created(){
     this.$store.dispatch('getWholeDataAction')
