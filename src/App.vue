@@ -32,19 +32,11 @@ export default {
   },
   
   methods: {
-    // getNameOfAllFriends() {
-    //   let userSpecificFriends = this.userSpecificFriends;
-    //   let names = userSpecificFriends.map(a => a.name);
-    //   arrayTelegramBot(names.join(', '));
-    //   return names.join(', ');
-    // },
   },
   created(){
     this.$store.dispatch('getWholeDataAction')
     this.$store.dispatch('getUserSpecificDataAction')
     this.$store.dispatch('getLoggedInStatus')
-
-    // this.initializeTelegramBot(this.userSpecificFriends[0].name, this.userSpecificFriends[0].parsed)
   },
 }
 </script>

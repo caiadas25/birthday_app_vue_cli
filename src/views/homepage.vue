@@ -22,8 +22,7 @@
 <script>
 import person from '../components/person';
 import navbar from '../components/navbar';
-import { Telegraf } from 'telegraf';
-import { initializeTelegramBot, arrayTelegramBot } from '../telegram';
+
 import { 
   mapState, 
   mapGetters, 
